@@ -40,11 +40,6 @@ class App extends React.Component {
       .then( myJson =>  {
         const formatedData = this.formatData(myJson);
         const favouriteData = formatedData.filter( item => item.favourite);
-        this.setState({
-          data : formatedData,
-          favouritesData : favouriteData,
-          filteredData : formatedData
-        }) 
         this.props.onDataUpdate(formatedData,favouriteData); 
 
       })
@@ -69,7 +64,6 @@ class App extends React.Component {
 
       return data
   }
-
 
   render() {
     const {filteredData, more, favouritesData} = this.props;
@@ -126,6 +120,5 @@ const mapDispatchToProps = dispatch => {
     onMoreUpdate : more => dispatch({type: actionTypes.MORE_UPDATE , more: more}),
   }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

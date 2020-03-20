@@ -9,9 +9,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
 
-	console.log("Initial state:", initialState);
 	switch(action.type) {
-
 		case actionTypes.DATA_UPDATE : 
 			return {
 				...state,
@@ -39,13 +37,13 @@ const reducer = (state = initialState, action) => {
 				...state,
 				more: action.more
 			};
-	}
-
-	return {
-		data: [],
-		more : '',
-	    filteredData : [],
-	    favouritesData : [],
+		default : 
+			return {
+				data: [],
+				more : '',
+			    filteredData : [],
+			    favouritesData : [],
+			}
 	}
 }
 

@@ -10,17 +10,17 @@ import * as actionTypes from '../../store/ActionTypes';
 
 class Card extends Component{
 
-	 takeFavourites() {
-	    Communicators.Fetch()
-	      .then( myJson =>  {
-	        const formatedData = this.formatData(myJson);
-	        const favouriteData = formatedData.filter( item => item.favourite);
-	        this.props.onFavouritesDataUpdate(favouriteData, formatedData);
-	      })
-	      .catch( error => alert(`Error: ${error}`));
-	  }
+	takeFavourites() {
+	  Communicators.Fetch()
+      .then( myJson =>  {
+        const formatedData = this.formatData(myJson);
+        const favouriteData = formatedData.filter( item => item.favourite);
+        this.props.onFavouritesDataUpdate(favouriteData, formatedData);
+      })
+      .catch( error => alert(`Error: ${error}`));
+	}
 
-	 addToFavourites(element) {
+	addToFavourites(element) {
 	    element.favourite = !element.favourite;
 	    Communicators.Put(element)
 	    .then((response) => {
@@ -56,7 +56,6 @@ class Card extends Component{
 	    .catch( error => alert(`Error: ${error}`));
 	}
 
-
 	render() {
 		const {missionName, flightNumber, launchYear, imageLink, element} = this.props;
 		return (
@@ -83,7 +82,6 @@ class Card extends Component{
 		)
 	}
 }
-
 
 const mapStateToProps = state => {
  return {}
