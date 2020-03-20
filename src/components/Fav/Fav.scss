@@ -1,0 +1,52 @@
+.favy {
+    font-size: 12px;
+    font-family: monospace;
+    position: relative;
+    width: 161px;
+    height: 151px;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 25px;
+    color: #ffffff;
+    font-weight: 600;
+    text-shadow: 0.5px 0.5px 1px black;
+    background-color: #A8EB12;
+    border: 1px solid #bebebe;
+    &:hover {
+        box-shadow: 4px 4px 7px gray, -4px 4px 7px gray;
+    }
+    span {
+    	 display: block;
+         font-weight: 100;
+  		 margin: 0;
+    }
+    >img {
+        position: absolute;
+        display: block;
+        width: 45px;
+        bottom: 5px;
+        right: 9px;
+     }
+    div {
+        &.more {
+            position: absolute;
+            left: 1px;
+            bottom: 12px;
+            padding: 0;
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+            img {
+                display: block;
+                width: 100%;
+                cursor: pointer;
+                margin-left: 6px;
+                position: absolute;
+                bottom: -7px;
+                &:hover {
+                    width: 120%;
+                }
+            }  
+        }
+    }
+}
