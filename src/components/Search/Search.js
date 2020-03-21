@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './Search.scss';
 import {connect} from 'react-redux';
-import * as actionTypes from '../../store/ActionTypes';
+import * as actionCreators from '../../store/ActionCreators';
 
 
 class Search extends Component {
@@ -58,7 +58,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFilteredDataUpdate : filteredData => dispatch({type: actionTypes.FILTER_DATA_UPDATE , filteredData: filteredData})
+    onFilteredDataUpdate : filteredData => dispatch(actionCreators.updateFilteredData(filteredData))
   }
 }
 

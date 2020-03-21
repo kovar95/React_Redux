@@ -8,11 +8,12 @@ import {Communicators} from './Communicators';
 import {Switch, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 import * as actionTypes from './store/ActionTypes';
+import * as actionCreators from './store/ActionCreators';
 
 class App extends React.Component {
 
   componentDidMount(){
-    this.takeData();
+    this.props.onDataUpdate(); 
   }
 
   sortFlights(a,b){
@@ -33,36 +34,6 @@ class App extends React.Component {
     const filterArr = [...this.props.filteredData];
     filterArr.sort(this.sortFlights);
     this.props.onFilteredDataUpdate(filterArr);
-  }
-
-  takeData() {
-    Communicators.Fetch()
-      .then( myJson =>  {
-        const formatedData = this.formatData(myJson);
-        const favouriteData = formatedData.filter( item => item.favourite);
-        this.props.onDataUpdate(formatedData,favouriteData); 
-
-      })
-      .catch( error => alert(`Error: ${error}`));
-  }
-
-  formatData(myData) {
-    const data = [];
-      for(const property in myData) {
-        data.push({
-          ...myData[property],
-          id: property,
-        });
-      }
-
-      data.forEach( item => {
-        if(!item.links) {
-          item.links = {};
-          item.links.mission_patch_small = 'https://zenit.org/wp-content/uploads/2018/05/no-image-icon.png' ;
-        }
-      })
-
-      return data
   }
 
   render() {
@@ -114,10 +85,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onDataUpdate : (data, favouritesData) => dispatch({type: actionTypes.DATA_UPDATE , data: data, favouritesData : favouritesData }),
-    onFavouritesDataUpdate : favouritesData => dispatch({type: actionTypes.FAVOURITES_DATA_UPDATE , favouritesData: favouritesData}),
-    onFilteredDataUpdate : filteredData => dispatch({type: actionTypes.FILTER_DATA_UPDATE , filteredData: filteredData}),
-    onMoreUpdate : more => dispatch({type: actionTypes.MORE_UPDATE , more: more}),
+    onDataUpdate : () => dispatch(actionCreators.getData()),
+    onFilteredDataUpdate : filteredData => dispatch(actionCreators.updateFilteredData(filteredData))
   }
 }
 

@@ -2,17 +2,10 @@ import React, {Component} from 'react';
 import './Fav.scss';
 import moreDet from '../../images/info.png';
 import {Link} from 'react-router-dom';
-import {Communicators} from '../../Communicators';
 import {connect} from 'react-redux';
-import * as actionTypes from '../../store/ActionTypes';
+import * as actionCreators from '../../store/ActionCreators';
 
 class Fav extends Component{
-
-    moreDetails(flightNumber){
-	    Communicators.More(flightNumber)
-	    .then( myJson => this.props.onMoreUpdate(myJson))
-	    .catch( error => alert(`Error: ${error}`));
-	}
 
 	render() {
 		const {missionName, flightNumber, launchYear, imageLink} = this.props;
@@ -29,7 +22,7 @@ class Fav extends Component{
 				</span>
 				<img src={imageLink} alt="link"/>
 				<Link to="/preview">
-					<div className="more" onClick={() => this.moreDetails(flightNumber)}>
+					<div className="more" onClick={() => this.props.onMoreUpdate(flightNumber)}>
 						<img src={moreDet} alt="more" />
 					</div>
 				</Link>
@@ -44,7 +37,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onMoreUpdate : more => dispatch({type: actionTypes.MORE_UPDATE , more: more})
+    onMoreUpdate : flightNumber => dispatch(actionCreators.getMore(flightNumber)),
   }
 }
 
