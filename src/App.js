@@ -4,10 +4,8 @@ import {Cards} from './components/Cards/Cards';
 import {Preview} from './components/Preview/Preview';
 import {Header} from './components/Header/Header';
 import {Favourites} from './components/Favourites/Favourites';
-import {Communicators} from './Communicators';
 import {Switch, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
-import * as actionTypes from './store/ActionTypes';
 import * as actionCreators from './store/ActionCreators';
 
 class App extends React.Component {
@@ -53,7 +51,9 @@ class App extends React.Component {
 
                 <Cards missions={filteredData} />
 
-                <Favourites missions={favouritesData} />
+                <Favourites  missions={favouritesData} />
+
+              
             </Route>
 
             <Route exact path="/preview" >
