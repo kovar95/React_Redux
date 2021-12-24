@@ -1,59 +1,62 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './Preview.scss';
-import uuid from 'react-uuid';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-class Preview extends Component{
+const Preview = ({
+  flightNumber,
+  launchYear,
+  missionName,
+  moreDetails,
+  launchSuccess,
+  nationality,
+  flightPic,
+  missionSimbol,
+}) => (
+  <div className="show">
+    <section className="preview">
+      <p>Mission Preview</p>
 
-	render() {
-		const {flightNumber, launchYear, missionName, moreDetails, launchSuccess, nationality, flightPic, missionSimbol} = this.props;
-		return (
-			<div className="show">
-				<section className="preview">
-					<p>Mission Preview</p>
-					
-					<span className="first">
-						<strong>Mission name:</strong> {missionName}
-					</span>
-					<span>
-						<strong>Flight number:</strong> {flightNumber}
-					</span>
-					<span>
-						<strong>Launch Year:</strong> {launchYear}
-					</span>
-					<span>
-						<strong>Nationality:</strong> {nationality} 
-					</span>
-					<span>
-						<strong>Launch success:</strong> {launchSuccess ? "Successful" : "Failed"} 
-					</span>
-				
-					<span>
-						<strong>Photos:</strong>
-					</span>
+      <span className="first">
+        <strong>Mission name:</strong> {missionName}
+      </span>
+      <span>
+        <strong>Flight number:</strong> {flightNumber}
+      </span>
+      <span>
+        <strong>Launch Year:</strong> {launchYear}
+      </span>
+      <span>
+        <strong>Nationality:</strong> {nationality}
+      </span>
+      <span>
+        <strong>Launch success:</strong>{' '}
+        {launchSuccess ? 'Successful' : 'Failed'}
+      </span>
 
-					<div className="pics">
-						{flightPic.map( pic => {
-							return (
-								<a href={pic} target="_blank" key={uuid()} rel="noopener noreferrer">
-									<img src={pic} alt="flightPic"/>
-								</a>
-							)
-						})}
-					</div>
+      <span>
+        <strong>Photos:</strong>
+      </span>
 
-					<span>
-						<strong>Details:</strong> {moreDetails} 
-					</span>
+      <div className="pics">
+        {flightPic.map((pic) => {
+          return (
+            <a href={pic} target="_blank" key={pic} rel="noopener noreferrer">
+              <img src={pic} alt="flightPic" />
+            </a>
+          );
+        })}
+      </div>
 
-					<img src={missionSimbol} alt="missionSimbol" />
-					<Link to="/">
-						<button>X</button>
-					</Link>
-				</section>
-			</div>
-		)
-	}
-}
+      <span>
+        <strong>Details:</strong> {moreDetails}
+      </span>
 
-export {Preview};
+      <img src={missionSimbol} alt="missionSimbol" />
+      <Link to="/">
+        <button>X</button>
+      </Link>
+    </section>
+  </div>
+);
+
+export default Preview;

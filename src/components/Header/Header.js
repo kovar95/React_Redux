@@ -1,20 +1,15 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './Header.scss';
 import Search from '../Search/Search';
-import {Logo} from '../Logo/Logo';
+import Logo from '../Logo/Logo';
 
-class Header extends Component{
+const Header = () => (
+  <header>
+    <div className="main-wrapper">
+      <Logo />
+      <Search />
+    </div>
+  </header>
+);
 
-	render() {
-		return (
-			<header>
-				<div className="main-wrapper">
-					<Logo/>
-					<Search />
-				</div>
-			</header>
-		)
-	}
-}
-
-export {Header};
+export default Header;
