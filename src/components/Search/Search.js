@@ -7,14 +7,14 @@ const Search = ({ data, onFilteredDataUpdate }) => {
   const [searchedTerm, setSearchedTerm] = useState('');
 
   useEffect(() => {
-	const dataSearch = (text) => {
-		const filteredData = data.filter((item) => {
-		  return item.mission_name
-			.toLowerCase()
-			.includes(text.toLowerCase().trim());
-		});
-		onFilteredDataUpdate(filteredData);
-	  };
+    const dataSearch = (text) => {
+      const filteredData = data.filter((item) => {
+        return item.mission_name
+          .toLowerCase()
+          .includes(text.toLowerCase().trim());
+      });
+      onFilteredDataUpdate(filteredData);
+    };
 
     dataSearch(searchedTerm);
   }, [searchedTerm, data, onFilteredDataUpdate]);

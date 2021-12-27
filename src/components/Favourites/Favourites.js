@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Favourites.scss';
 import Card from '../Card/Card';
 import { Motion, spring } from 'react-motion';
 
-const Favourites = ({ missions }) => {
-  const [showFavourites, setShowFavourites] = useState(false);
+const Favourites = ({ missions, showFavourites, setShowFavourites }) => {
 
   return (
     <>
